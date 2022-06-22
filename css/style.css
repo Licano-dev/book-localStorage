@@ -1,0 +1,58 @@
+:root {
+    --azul: #0D96FC;
+    --amarrillo: #ffc107;
+    --verde: #20c997;
+    --rojo: #dc3545;
+}
+
+.card>.card-body {
+    border-bottom: 2px solid transparent;
+}
+
+.card:hover>.card-body {
+    background-color: #D9D9DB;
+    border-bottom: 2px solid #747479;
+}
+
+.options {
+    border-top: none;
+    border-radius: 0;
+}
+
+.rojo {
+    background-color: var(--rojo);
+}
+
+.amarillo {
+    background-color: var(--amarrillo);
+}
+
+.verde {
+    background-color: var(--verde);
+}
+
+.azul {
+    background-color: var(--azul);
+}
+
+.card-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-options .card-title {
+    margin-left: 19px;
+}
+
+.icons {
+    align-items: center;
+    border-radius: 100%;
+    color: white;
+    display: flex;
+    height: 64px;
+    padding: 10px;
+    justify-content: center;
+    width: 64px;
+}
