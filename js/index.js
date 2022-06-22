@@ -1,0 +1,1 @@
+import { Agenda, AgendaContacto, AgendaTareas, AgendaEvento } from "./clases.js";

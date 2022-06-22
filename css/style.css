@@ -5,11 +5,11 @@
     --rojo: #dc3545;
 }
 
-.card>.card-body {
+.card-category>.card-body {
     border-bottom: 2px solid transparent;
 }
 
-.card:hover>.card-body {
+.card-category:hover>.card-body {
     background-color: #D9D9DB;
     border-bottom: 2px solid #747479;
 }
