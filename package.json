@@ -1,0 +1,14 @@
+{
+  "name": "agenda-localstorage",
+  "version": "1.0.0",
+  "description": "Proyecto de agenda y notas cuyo almacenamiento es de manera local dentro del navegador (LocalStorage)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yonier Julian Arias Perez <yonierjulian999@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}
