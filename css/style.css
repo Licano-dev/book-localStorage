@@ -56,3 +56,7 @@
     justify-content: center;
     width: 64px;
 }
+
+.alerta-oculta {
+    display: none !important;
+}
