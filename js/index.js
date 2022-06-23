@@ -1,21 +1,24 @@
 import { AgendaContacto, AgendaTareas, AgendaEvento, AgendaNota } from "./clases.js";
-import { close, validarAgendaContacto, alertaFormularioAgenda, guardarEnLocalStorage, cargarContactosAgenda, validarAgendaNota, validarAgendaTarea, validarAgendaEvento } from "./funciones.js";
+import { close, validarAgendaContacto, alertaFormularioAgenda, guardarEnLocalStorage, cargarContactosAgenda, validarAgendaNota, validarAgendaTarea, validarAgendaEvento, cargarAgendaFiltro } from "./funciones.js";
 
 const listadoContenedorHtlm = document.querySelector("#listado-agenda");
 const localStorageDB = window.localStorage; //local storage del objeto windows del navegador
 const btnsClose = document.getElementsByClassName("btn-close-function");
 const btnAgendaContacto = document.querySelector("#btn-guardar-agendaContacto"); //boton de formulario de agenda de contactos
-
 const btnNota = document.querySelector("#btn-guardar-nota"); //boton del formulario notas
-
 const btnTarea = document.querySelector("#btn-guardar-tarea"); //boton del formulario tarea
 const btnEvento = document.querySelector("#btn-guardar-Evento");
+
+const btnFiltroTodo = document.querySelector("#btn-todo");
+const btnFiltroContacto = document.querySelector("#btn-contacto");
+const btnFiltroNota = document.querySelector("#btn-nota");
+const btnFiltroTarea = document.querySelector("#btn-tarea");
+const btnFiltroEvento = document.querySelector("#btn-evento");
 for (let elemento of btnsClose) { //evento de cerrar formularios
     elemento.addEventListener('click', close);
 }
 btnAgendaContacto.addEventListener('click', () => {
     let validar = validarAgendaContacto();
-    const TIPO_AGENDA = "contacto";
     if (validar) {
         alertaFormularioAgenda("#alerta", validar);
     } else {
@@ -72,4 +75,34 @@ btnEvento.addEventListener('click', () => {
     }
 
 })
-cargarContactosAgenda(listadoContenedorHtlm, localStorageDB);
+
+const filtro = (e) => {
+    switch (e.srcElement.id) {
+        case 'btn-todo':
+            cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'todo');
+            break;
+        case 'btn-contacto':
+            cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'contacto');
+            break;
+        case 'btn-nota':
+            cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'nota');
+            break;
+        case 'btn-tarea':
+            cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'tarea');
+            break;
+        case 'btn-evento':
+            cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'evento');
+            break;
+    }
+}
+let filtroIncio = new Array(btnFiltroTodo.classList);
+let filtroTodoActivo = filtroIncio[0][1];
+const CLASS_ACTIVE = "active";
+if (filtroTodoActivo === CLASS_ACTIVE) {
+    cargarContactosAgenda(listadoContenedorHtlm, localStorageDB);
+}
+btnFiltroTodo.addEventListener('click', filtro);
+btnFiltroContacto.addEventListener('click', filtro);
+btnFiltroNota.addEventListener('click', filtro);
+btnFiltroTarea.addEventListener('click', filtro);
+btnFiltroEvento.addEventListener('click', filtro);
