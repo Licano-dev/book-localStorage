@@ -65,3 +65,17 @@
 .space {
     border-bottom: 1px solid var(--lineas-color);
 }
+
+.header-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icono-delete {
+    color: tomato;
+}
+
+.icono-delete:hover {
+    cursor: pointer;
+}

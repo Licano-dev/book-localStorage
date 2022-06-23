@@ -6,7 +6,7 @@ const limpiarAlerta = () => { //esta funcion sirve para limpiar la alerta a medi
         alerta.removeChild(mensejeHtml); //elimina el div con el contenido de la alerta
     }
 }
-const alertaGuardar = (texto) => {
+const alertaExito = (texto) => {
     Swal.fire({ //alerta de libreria sweetalert2
         position: 'center',
         icon: 'success',
@@ -15,7 +15,7 @@ const alertaGuardar = (texto) => {
         timer: 1900
     })
     setTimeout(function() { //despues de 2 seg ejecurar la redirección
-        window.location.href = "../index.html";
+        window.location.href = "../";
     }, 2000);
 }
 const validarAgendaContacto = () => {
@@ -58,9 +58,10 @@ const alertaAgendaContacto = (contenido) => {
 
 const guardarEnLocalStorage = (dataBase, contactoData) => {
     let clave = Math.random(1, 100); //identificador para el localStorage
+    contactoData.id = clave;
     let convertirJson = JSON.stringify(contactoData);
     dataBase.setItem(clave, convertirJson);
-    alertaGuardar("Contacto Guardado");
+    alertaExito("Contacto Guardado");
 }
 const listarContactosAgenda = (parentNode, contacto, baseData) => {
     //parametros parentNode el contenedor padre de todos los datos, contacto el registro, daseData el localStorage para eliminar registro
@@ -69,6 +70,7 @@ const listarContactosAgenda = (parentNode, contacto, baseData) => {
     const divCard = document.createElement("div");
     const divCardHeader = document.createElement("div");
     const h5Titulo = document.createElement("h5");
+    const iconoDetele = document.createElement("i");
     const divCardBody = document.createElement("div");
     const htmlNombre = document.createElement("p");
     const htmltelefono = document.createElement("p");
@@ -78,19 +80,25 @@ const listarContactosAgenda = (parentNode, contacto, baseData) => {
     htmltelefono.innerHTML = `Teléfono ${contacto.numero}`;
     htmlEmail.innerHTML = `Email: ${contacto.correo}`;
     h5Titulo.innerHTML = contacto.tipoAgenda.toUpperCase();
-
     //agregar clases css a los elementos html
-    divCol.classList.add("col");
+    divCol.classList.add("col-2", "col-md-4");
     divCard.classList.add("card");
-    divCardHeader.classList.add("card-header");
+    divCardHeader.classList.add("card-header", "header-item");
     h5Titulo.classList.add("card-title");
+    iconoDetele.classList.add("fas", "fa-1x", "fa-trash-alt", "icono-delete");
     divCardBody.classList.add("card-body");
     htmlNombre.classList.add("card-text", "space");
     htmltelefono.classList.add("card-text", "space");
     htmlEmail.classList.add("card-text", "space");
 
+    iconoDetele.addEventListener('click', () => {
+        baseData.removeItem(contacto.id);
+        alertaExito("Contacto Eliminado");
+    })
+
     //agregar html a los padres
     divCardHeader.appendChild(h5Titulo);
+    divCardHeader.appendChild(iconoDetele);
     divCardBody.appendChild(htmlNombre);
     divCardBody.appendChild(htmltelefono);
     divCardBody.appendChild(htmlEmail);

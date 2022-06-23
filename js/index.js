@@ -13,7 +13,7 @@ btnAgendaContacto.addEventListener('click', () => {
         const nombre = document.querySelector("#nombreAgendaContacto").value;
         const telefono = document.querySelector("#telefonoAgendaContacto").value;
         const correo = document.querySelector("#correoAgendaContacto").value;
-        const contactoAgenda = new AgendaContacto(nombre, telefono, correo, TIPO_AGENDA);
+        const contactoAgenda = new AgendaContacto(null, nombre, telefono, correo);
         guardarEnLocalStorage(localStorageDB, contactoAgenda);
     }
 })

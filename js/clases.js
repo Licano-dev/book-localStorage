@@ -1,32 +1,36 @@
 class Agenda {
-    constructor(titulo, contenido, tipoAgenda) {
+    constructor(id, titulo, contenido) {
+        this.id = id || 0;
         this.titulo = titulo;
         this.contenido = contenido;
-        this.tipo = tipoAgenda;
+        this.tipo = 'agenda';
     }
 }
 class AgendaContacto {
-    constructor(nombre, numero, correoElectronico, tipoAgenda) {
+    constructor(id, nombre, numero, correoElectronico) {
+        this.id = id || 0;
         this.nombre = nombre;
         this.numero = numero;
         this.correo = correoElectronico;
-        this.tipoAgenda = tipoAgenda;
+        this.tipoAgenda = 'contacto';
     }
 }
 
 class AgendaTareas extends Agenda { //Herencia
-    constructor(titulo, contenido, fecha, hora, tipoAgenda) {
-        super(titulo, contenido, tipoAgenda);
+    constructor(id, titulo, contenido, fecha, hora, ) {
+        super(id, titulo, contenido, tipoAgenda);
         this.fecha = fecha;
         this.hora = hora;
+        this.tipoAgenda = "tarea";
     }
 }
 class AgendaEvento extends AgendaTareas { //Herencia
-    constructor(titulo, contenido, fecha, hora, fechaFinal, horaFinal, lugar, tipoAgenda) {
-        super(titulo, contenido, fecha, hora, tipoAgenda);
+    constructor(id, titulo, contenido, fecha, hora, fechaFinal, horaFinal, lugar, tipoAgenda) {
+        super(id, titulo, contenido, fecha, hora, tipoAgenda);
         this.fechaFinal = fechaFinal;
         this.horaFinal = horaFinal;
         this.lugar = lugar;
+        this.tipoAgenda = "evento";
     }
 }
 
