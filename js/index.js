@@ -1,6 +1,7 @@
 import { Agenda, AgendaContacto, AgendaTareas, AgendaEvento } from "./clases.js";
-import { validarAgendaContacto, alertaAgendaContacto, guardarEnLocalStorage } from "./funciones.js";
+import { validarAgendaContacto, alertaAgendaContacto, guardarEnLocalStorage, cargarContactosAgenda } from "./funciones.js";
 
+const listadoContenedorHtlm = document.querySelector("#listado-agenda");
 const localStorageDB = window.localStorage; //local storage del objeto windows del navegador
 const btnAgendaContacto = document.querySelector("#btn-guardar-agendaContacto");
 btnAgendaContacto.addEventListener('click', () => {
@@ -16,3 +17,4 @@ btnAgendaContacto.addEventListener('click', () => {
         guardarEnLocalStorage(localStorageDB, contactoAgenda);
     }
 })
+cargarContactosAgenda(listadoContenedorHtlm, localStorageDB);
