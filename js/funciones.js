@@ -6,6 +6,18 @@ const limpiarAlerta = () => { //esta funcion sirve para limpiar la alerta a medi
         alerta.removeChild(mensejeHtml); //elimina el div con el contenido
     }
 }
+const alertaGuardar = (texto) => {
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: texto,
+        showConfirmButton: false,
+        timer: 1900
+    })
+    setTimeout(function() {
+        window.location.href = "../index.html";
+    }, 2000);
+}
 const validarAgendaContacto = () => {
     const nombre = document.querySelector("#nombreAgendaContacto");
     const telefono = document.querySelector("#telefonoAgendaContacto");
@@ -43,4 +55,11 @@ const alertaAgendaContacto = (contenido) => {
     alerta.appendChild(mensaje)
     alerta.classList.remove("alerta-oculta");
 }
-export { validarAgendaContacto, alertaAgendaContacto }
+
+const guardarEnLocalStorage = (dataBase, contactoData) => {
+    let clave = Math.random(1, 100); //identificador para el localStorage
+    let convertirJson = JSON.stringify(contactoData);
+    dataBase.setItem(clave, convertirJson);
+    alertaGuardar("Contacto Guardado");
+}
+export { validarAgendaContacto, alertaAgendaContacto, guardarEnLocalStorage }
