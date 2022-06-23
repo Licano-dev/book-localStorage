@@ -15,7 +15,7 @@ const alertaExito = (texto) => {
         timer: 1900
     })
     setTimeout(function() { //despues de 2 seg ejecurar la redirección
-        window.location.href = "../";
+        window.location.href = "https://yonier999.github.io/agenda-local-storage/";
     }, 2000);
 }
 const validarAgendaContacto = () => {
