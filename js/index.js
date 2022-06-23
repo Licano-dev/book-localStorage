@@ -1,4 +1,4 @@
-import { AgendaContacto, AgendaTareas, AgendaEvento, Nota } from "./clases.js";
+import { AgendaContacto, AgendaTareas, AgendaEvento, AgendaNota } from "./clases.js";
 import { close, validarAgendaContacto, alertaFormularioAgenda, guardarEnLocalStorage, cargarContactosAgenda, validarAgendaNota, validarAgendaTarea, validarAgendaEvento } from "./funciones.js";
 
 const listadoContenedorHtlm = document.querySelector("#listado-agenda");
@@ -36,7 +36,7 @@ btnNota.addEventListener('click', () => {
         const MENSAJE_EXITO = "Nota Guardada";
         const tituloNota = document.querySelector("#tituloNota").value;
         const contenidoNota = document.querySelector("#contenidoNota").value;
-        const nota = new Nota(null, tituloNota, contenidoNota);
+        const nota = new AgendaNota(null, tituloNota, contenidoNota);
         guardarEnLocalStorage(localStorageDB, nota, MENSAJE_EXITO);
     }
 })

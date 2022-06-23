@@ -16,7 +16,7 @@ class AgendaContacto {
     }
 }
 
-class Nota extends Agenda {
+class AgendaNota extends Agenda {
     constructor(id, titulo, contenido) {
         super(id, titulo, contenido);
         this.tipoAgenda = 'nota';
@@ -41,4 +41,4 @@ class AgendaEvento extends AgendaTareas { //Herencia
     }
 }
 
-export { AgendaContacto, AgendaTareas, AgendaEvento, Nota }
+export { AgendaContacto, AgendaTareas, AgendaEvento, AgendaNota }
