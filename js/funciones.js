@@ -162,4 +162,35 @@ const validarAgendaTarea = () => {
     }
     return mensaje;
 }
-export { close, validarAgendaContacto, alertaFormularioAgenda, guardarEnLocalStorage, cargarContactosAgenda, validarAgendaNota, validarAgendaTarea }
+const validarAgendaEvento = () => {
+    const tituloEvento = document.querySelector("#tituloEvento");
+    const contenidoEvento = document.querySelector("#contenidoEvento");
+    const fechaEventoInicio = document.querySelector("#fechaEventoInicio");
+    const horaEventoInicio = document.querySelector("#horaEventoInicio");
+    const fechaEventoFinal = document.querySelector("#fechaEventoFinal");
+    const horaEventoFinal = document.querySelector("#horaEventoFinal");
+    limpiarAlerta("#alertaEvento");
+    let mensaje = "";
+    if (!tituloEvento.value) {
+        mensaje += "EL campo Titulo está Vacio";
+        tituloEvento.focus();
+    } else if (!contenidoEvento.value) {
+        mensaje += "EL campo Contenido está Vacio";
+        contenidoEvento.focus();
+    } else if (!fechaEventoInicio.value) {
+        mensaje += "No has selecionado la fecha de inicio del evento";
+        fechaEventoInicio.focus();
+    } else if (!horaEventoInicio.value) {
+        mensaje += "No has designado la hora de inicio del evento";
+        horaEventoInicio.focus();
+    } else if (!fechaEventoFinal.value) {
+        mensaje += "No has designado la fecha final del evento";
+        fechaEventoFinal.focus();
+    } else if (!horaEventoFinal.value) {
+        mensaje += "No has designado la hora final del evento";
+        horaEventoFinal.focus();
+    }
+    return mensaje;
+
+}
+export { close, validarAgendaContacto, alertaFormularioAgenda, guardarEnLocalStorage, cargarContactosAgenda, validarAgendaNota, validarAgendaTarea, validarAgendaEvento }

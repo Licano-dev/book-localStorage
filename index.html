@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="card card-category">
+                <div class="card card-category" data-bs-toggle="modal" data-bs-target="#modalEvento">
                     <div class="card-body card-options">
                         <div class="icons rojo">
                             <i class="fas fa-2x fa-calendar-alt"></i>
@@ -181,6 +181,7 @@
         </div>
     </div>
     <!-- FIN MODAL AGENDA NOTAS -->
+
     <!-- MODAL AGENDA TAREA -->
     <div class="modal fade" id="modalTarea" tabindex="-1" aria-labelledby="exampleModalLabeltarea" aria-hidden="true">
         <div class="modal-dialog">
@@ -225,6 +226,58 @@
         </div>
     </div>
     <!-- FIN MODAL AGENDA TAREAS -->
+
+
+    <!-- MODAL AGENDA EVENTO -->
+    <div class="modal fade" id="modalEvento" tabindex="-1" aria-labelledby="exampleModalLabelEvento" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelEvento">Tarea</h5>
+                    <button type="button" class="btn-close btn-close-function" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="input-group flex-nowrap mb-3">
+                            <label class="input-group-text" for="tituloEvento">Titulo</label>
+                            <input type="text" class="form-control" aria-describedby="tituloEvento" id="tituloEvento">
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" placeholder="Contenido del Evento" id="contenidoEvento"></textarea>
+                            <label for="contenidoEvento">Contenido</label>
+                        </div>
+
+                        <div class="input-group flex-nowrap mb-3">
+                            <label class="input-group-text" for="fechaEventoInicio">Fecha Inicio</label>
+                            <input type="date" class="form-control" aria-describedby="fechaEventoInicio" id="fechaEventoInicio">
+                            <label class="input-group-text" for="horaEventoInicio">Hora Inicio</label>
+                            <input type="time" class="form-control" aria-describedby="horaEventoInicio" id="horaEventoInicio">
+                        </div>
+                        <div class="input-group flex-nowrap mb-3">
+                            <label class="input-group-text" for="fechaEventoFinal">Fecha Final</label>
+                            <input type="date" class="form-control" aria-describedby="fechaEventoFinal" id="fechaEventoFinal">
+                            <label class="input-group-text" for="horaEventoFinal">Hora Final</label>
+                            <input type="time" class="form-control" aria-describedby="horaEventoFinal" id="horaEventoFinal">
+                        </div>
+
+
+                        <!-- alerta -->
+                        <div class="alert alert-danger d-flex align-items-center alerta-oculta" role="alert" id="alertaEvento">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewbox="0 0 16 16" role="img" aria-label="Warning:">
+                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                      </svg>
+                        </div>
+                        <!-- fin alert -->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-close-function" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btn-guardar-Evento" class="btn btn-success">Guardar Nota</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN MODAL AGENDA EVENTO -->
 
     <!--FIN  MODALS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

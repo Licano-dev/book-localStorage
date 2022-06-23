@@ -1,5 +1,5 @@
 import { AgendaContacto, AgendaTareas, AgendaEvento, Nota } from "./clases.js";
-import { close, validarAgendaContacto, alertaFormularioAgenda, guardarEnLocalStorage, cargarContactosAgenda, validarAgendaNota, validarAgendaTarea } from "./funciones.js";
+import { close, validarAgendaContacto, alertaFormularioAgenda, guardarEnLocalStorage, cargarContactosAgenda, validarAgendaNota, validarAgendaTarea, validarAgendaEvento } from "./funciones.js";
 
 const listadoContenedorHtlm = document.querySelector("#listado-agenda");
 const localStorageDB = window.localStorage; //local storage del objeto windows del navegador
@@ -9,6 +9,7 @@ const btnAgendaContacto = document.querySelector("#btn-guardar-agendaContacto");
 const btnNota = document.querySelector("#btn-guardar-nota"); //boton del formulario notas
 
 const btnTarea = document.querySelector("#btn-guardar-tarea"); //boton del formulario tarea
+const btnEvento = document.querySelector("#btn-guardar-Evento");
 for (let elemento of btnsClose) { //evento de cerrar formularios
     elemento.addEventListener('click', close);
 }
@@ -52,5 +53,23 @@ btnTarea.addEventListener('click', () => {
         const tarea = new AgendaTareas(null, tituloTarea, contenidoTarea, fechaTarea, horaTarea);
         guardarEnLocalStorage(localStorageDB, tarea, MENSAJE_EXITO)
     }
+})
+
+btnEvento.addEventListener('click', () => {
+    let validar = validarAgendaEvento();
+    if (validar) {
+        alertaFormularioAgenda("#alertaEvento", validar);
+    } else {
+        const MENSAJE_EXITO = "Evento Guardado";
+        const tituloEvento = document.querySelector("#tituloEvento").value;
+        const contenidoEvento = document.querySelector("#contenidoEvento").value;
+        const fechaEventoInicio = document.querySelector("#fechaEventoInicio").value;
+        const horaEventoInicio = document.querySelector("#horaEventoInicio").value;
+        const fechaEventoFinal = document.querySelector("#fechaEventoFinal").value;
+        const horaEventoFinal = document.querySelector("#horaEventoFinal").value;
+        const evento = new AgendaEvento(null, tituloEvento, contenidoEvento, fechaEventoInicio, horaEventoInicio, fechaEventoFinal, horaEventoFinal);
+        guardarEnLocalStorage(localStorageDB, evento, MENSAJE_EXITO)
+    }
+
 })
 cargarContactosAgenda(listadoContenedorHtlm, localStorageDB);
