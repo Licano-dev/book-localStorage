@@ -2,6 +2,7 @@ import { AgendaContacto, AgendaTareas, AgendaEvento, AgendaNota } from "./clases
 import { close, validarAgendaContacto, alertaFormularioAgenda, guardarEnLocalStorage, cargarContactosAgenda, validarAgendaNota, validarAgendaTarea, validarAgendaEvento, cargarAgendaFiltro } from "./funciones.js";
 
 const listadoContenedorHtlm = document.querySelector("#listado-agenda");
+const tiluloFiltro = document.querySelector("#titulo-filtro");
 const localStorageDB = window.localStorage; //local storage del objeto windows del navegador
 const btnsClose = document.getElementsByClassName("btn-close-function");
 const btnAgendaContacto = document.querySelector("#btn-guardar-agendaContacto"); //boton de formulario de agenda de contactos
@@ -77,20 +78,26 @@ btnEvento.addEventListener('click', () => {
 })
 
 const filtro = (e) => { //filtro valida que boton se acciono para ejecutar la funcion con sus argumento
+    btnFiltroTodo.classList.remove("active");
     switch (e.srcElement.id) { //se obtinen el id del elemento accionado
         case 'btn-todo': //id segun el html
+            tiluloFiltro.innerHTML = "TODOS";
             cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'todo'); //de argumento se envia el tipo de registro a filtrar
             break;
         case 'btn-contacto':
+            tiluloFiltro.innerHTML = "CONTACTOS";
             cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'contacto');
             break;
         case 'btn-nota':
+            tiluloFiltro.innerHTML = "NOTAS";
             cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'nota');
             break;
         case 'btn-tarea':
+            tiluloFiltro.innerHTML = "TAREAS";
             cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'tarea');
             break;
         case 'btn-evento':
+            tiluloFiltro.innerHTML = "EVENTOS";
             cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'evento');
             break;
     }
