@@ -111,6 +111,154 @@ const listarContactosAgenda = (parentNode, contacto, baseData) => {
 
 }
 
+const listarAgendaNota = (parentNode, contacto, baseData) => {
+    //parametros parentNode el contenedor padre de todos los datos, contacto el registro, daseData el localStorage para eliminar registro
+    /* Creación de elementos HTML */
+    const divCol = document.createElement("div");
+    const divCard = document.createElement("div");
+    const divCardHeader = document.createElement("div");
+    const h5Titulo = document.createElement("h5");
+    const iconoDetele = document.createElement("i");
+    const divCardBody = document.createElement("div");
+    const htmlTitulo = document.createElement("p");
+    const htmlContenido = document.createElement("p");
+    //Inicializar datos en html
+    htmlTitulo.innerText = `${contacto.titulo}`;
+    htmlContenido.innerText = `${contacto.contenido}`;
+    h5Titulo.innerHTML = `${contacto.tipoAgenda.toUpperCase()}`;
+    //agregar clases css a los elementos html
+    divCol.classList.add("col-2", "col-md-4");
+    divCard.classList.add("card");
+    divCardHeader.classList.add("card-header", "header-item");
+    h5Titulo.classList.add("card-title");
+    iconoDetele.classList.add("fas", "fa-1x", "fa-trash-alt", "icono-delete");
+    divCardBody.classList.add("card-body");
+    htmlTitulo.classList.add("card-text", "space");
+    htmlContenido.classList.add("card-text", "space");
+
+    iconoDetele.addEventListener('click', () => {
+        baseData.removeItem(contacto.id);
+        alertaExito("Nota Eliminada");
+    })
+
+    //agregar html a los padres
+    divCardHeader.appendChild(h5Titulo);
+    divCardHeader.appendChild(iconoDetele);
+    divCardBody.appendChild(htmlTitulo);
+    divCardBody.appendChild(htmlContenido);
+    divCard.appendChild(divCardHeader);
+    divCard.appendChild(divCardBody);
+    divCol.appendChild(divCard)
+    parentNode.appendChild(divCol); //adicionar al contenedor padres
+}
+
+const listarAgendaTarea = (parentNode, contacto, baseData) => {
+    //parametros parentNode el contenedor padre de todos los datos, contacto el registro, daseData el localStorage para eliminar registro
+    /* Creación de elementos HTML */
+    const divCol = document.createElement("div");
+    const divCard = document.createElement("div");
+    const divCardHeader = document.createElement("div");
+    const h5Titulo = document.createElement("h5");
+    const iconoDetele = document.createElement("i");
+    const divCardBody = document.createElement("div");
+    const htmlTitulo = document.createElement("p");
+    const htmlContenido = document.createElement("p");
+    const htmlFecha = document.createElement("p");
+    const htmlHora = document.createElement("p");
+    //Inicializar datos en html
+    htmlTitulo.innerHTML = `${contacto.titulo}`;
+    htmlContenido.innerHTML = `${contacto.contenido}`;
+    htmlFecha.innerHTML = `Fecha: ${contacto.fecha}`;
+    htmlHora.innerHTML = `Hora: ${contacto.hora}`;
+    h5Titulo.innerHTML = `${contacto.tipoAgenda.toUpperCase()}`;
+    //agregar clases css a los elementos html
+    divCol.classList.add("col-2", "col-md-4");
+    divCard.classList.add("card");
+    divCardHeader.classList.add("card-header", "header-item");
+    h5Titulo.classList.add("card-title");
+    iconoDetele.classList.add("fas", "fa-1x", "fa-trash-alt", "icono-delete");
+    divCardBody.classList.add("card-body");
+    htmlTitulo.classList.add("card-text", "space");
+    htmlContenido.classList.add("card-text", "space");
+    htmlFecha.classList.add("card-text", "space");
+    htmlHora.classList.add("card-text", "space");
+
+    iconoDetele.addEventListener('click', () => {
+        baseData.removeItem(contacto.id);
+        alertaExito("Tarea Eliminada");
+    })
+
+    //agregar html a los padres
+    divCardHeader.appendChild(h5Titulo);
+    divCardHeader.appendChild(iconoDetele);
+    divCardBody.appendChild(htmlTitulo);
+    divCardBody.appendChild(htmlContenido);
+    divCardBody.appendChild(htmlFecha);
+    divCardBody.appendChild(htmlHora);
+    divCard.appendChild(divCardHeader);
+    divCard.appendChild(divCardBody);
+    divCol.appendChild(divCard)
+    parentNode.appendChild(divCol); //adicionar al contenedor padres
+}
+
+const listarAgendaEvento = (parentNode, contacto, baseData) => {
+    //parametros parentNode el contenedor padre de todos los datos, contacto el registro, daseData el localStorage para eliminar registro
+    /* Creación de elementos HTML */
+    const divCol = document.createElement("div");
+    const divCard = document.createElement("div");
+    const divCardHeader = document.createElement("div");
+    const h5Titulo = document.createElement("h5");
+    const iconoDetele = document.createElement("i");
+    const divCardBody = document.createElement("div");
+    const htmlTitulo = document.createElement("p");
+    const htmlContenido = document.createElement("p");
+    const htmlFechaInicio = document.createElement("p");
+    const htmlHoraInicio = document.createElement("p");
+    const htmlHoraFechaFinal = document.createElement("p");
+    const htmlHoraFinal = document.createElement("p");
+    //Inicializar datos en html
+    htmlTitulo.innerHTML = `${contacto.titulo}`;
+    htmlContenido.innerHTML = `${contacto.contenido}`;
+    htmlFechaInicio.innerHTML = `Fecha Inicio: ${contacto.fecha}`;
+    htmlHoraInicio.innerHTML = `Hora Inicio: ${contacto.hora}`;
+    htmlHoraFechaFinal.innerHTML = `Hora Final: ${contacto.fechaFinal}`;
+    htmlHoraFinal.innerHTML = `Hora Final: ${contacto.horaFinal}`;
+    h5Titulo.innerHTML = `${contacto.tipoAgenda.toUpperCase()}`;
+
+    //agregar clases css a los elementos html
+    divCol.classList.add("col-2", "col-md-4");
+    divCard.classList.add("card");
+    divCardHeader.classList.add("card-header", "header-item");
+    h5Titulo.classList.add("card-title");
+    iconoDetele.classList.add("fas", "fa-1x", "fa-trash-alt", "icono-delete");
+    divCardBody.classList.add("card-body");
+    htmlTitulo.classList.add("card-text", "space");
+    htmlContenido.classList.add("card-text", "space");
+    htmlFechaInicio.classList.add("card-text", "space");
+    htmlHoraInicio.classList.add("card-text", "space");
+    htmlHoraFinal.classList.add("card-text", "space");
+    htmlHoraFinal.classList.add("card-text", "space");
+
+    iconoDetele.addEventListener('click', () => {
+        baseData.removeItem(contacto.id);
+        alertaExito("Tarea Eliminada");
+    })
+
+    //agregar html a los padres
+    divCardHeader.appendChild(h5Titulo);
+    divCardHeader.appendChild(iconoDetele);
+    divCardBody.appendChild(htmlTitulo);
+    divCardBody.appendChild(htmlContenido);
+    divCardBody.appendChild(htmlFechaInicio);
+    divCardBody.appendChild(htmlHoraInicio);
+    divCardBody.appendChild(htmlHoraFechaFinal);
+    divCardBody.appendChild(htmlHoraFinal);
+    divCard.appendChild(divCardHeader);
+    divCard.appendChild(divCardBody);
+    divCol.appendChild(divCard)
+    parentNode.appendChild(divCol); //adicionar al contenedor padres
+}
+
 const cargarContactosAgenda = (parentNode, baseDatos) => {
     // recibe el contenedor padre, y la base de datos la cual es el localStorage
     let claves = Object.keys(baseDatos); //Obtiene una array de claves del localStorage
@@ -119,6 +267,12 @@ const cargarContactosAgenda = (parentNode, baseDatos) => {
         contactoAgenda = JSON.parse(contactoAgenda); //convierte el registro en JSON (objeto)
         if (contactoAgenda.tipoAgenda === "contacto") { //valida si es un contacto
             listarContactosAgenda(parentNode, contactoAgenda, baseDatos); //funcion listar Datos de contacto
+        } else if (contactoAgenda.tipoAgenda === "nota") {
+            listarAgendaNota(parentNode, contactoAgenda, baseDatos);
+        } else if (contactoAgenda.tipoAgenda === "tarea") {
+            listarAgendaTarea(parentNode, contactoAgenda, baseDatos);
+        } else if (contactoAgenda.tipoAgenda === "evento") {
+            listarAgendaEvento(parentNode, contactoAgenda, baseDatos);
         }
     });
 }
