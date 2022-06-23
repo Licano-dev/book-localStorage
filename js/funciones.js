@@ -1,6 +1,9 @@
-const limpiarAlerta = () => { //esta funcion sirve para limpiar la alerta a medida de que se valida con cada click 
-    const alerta = document.querySelector("#alerta"); //div el contenedor de la alerta
-    const mensejeHtml = document.querySelector("#mensaje"); //div html de la alerta contenedor
+const close = () => {
+    window.location.href = "../";
+}
+const limpiarAlerta = (elemento) => { //esta funcion sirve para limpiar la alerta a medida de que se valida con cada click 
+    let alerta = document.querySelector(elemento); //div el contenedor de la alerta
+    let mensejeHtml = document.querySelector("#mensaje"); //div html de la alerta contenedor
     if (Boolean(mensejeHtml)) { //valida si existe la alerta
         alerta.classList.add("alerta-oculta"); //oculta la alerta removiendo la clase css
         alerta.removeChild(mensejeHtml); //elimina el div con el contenido de la alerta
@@ -26,7 +29,7 @@ const validarAgendaContacto = () => {
     let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
     let numeroRegex = /^[0-9]*(\.?)[ 0-9]+$/;
 
-    limpiarAlerta(); //llamada a limpia la alerta
+    limpiarAlerta("#alerta"); //llamada a limpia la alerta
     let mensaje = "";
     if (!nombre.value) {
         mensaje += "El campo nombre esta vacio";
@@ -46,9 +49,8 @@ const validarAgendaContacto = () => {
     }
     return mensaje;
 }
-
-const alertaAgendaContacto = (contenido) => {
-    const alerta = document.querySelector("#alerta"); //html de la alerta
+const alertaFormularioAgenda = (elemento, contenido) => {
+    const alerta = document.querySelector(elemento); //html de la alerta
     let mensaje = document.createElement("div"); //div del contenido de la alerta
     mensaje.setAttribute('id', 'mensaje'); //añadimos id al div contenido alerta
     mensaje.innerHTML = contenido; //agregamos el mensaje al div
@@ -56,12 +58,12 @@ const alertaAgendaContacto = (contenido) => {
     alerta.classList.remove("alerta-oculta"); //removemos la clase css para mostrar la alerta
 }
 
-const guardarEnLocalStorage = (dataBase, contactoData) => {
+const guardarEnLocalStorage = (dataBase, contactoData, mensaje) => {
     let clave = Math.random(1, 100); //identificador para el localStorage
     contactoData.id = clave;
     let convertirJson = JSON.stringify(contactoData);
     dataBase.setItem(clave, convertirJson);
-    alertaExito("Contacto Guardado");
+    alertaExito(mensaje);
 }
 const listarContactosAgenda = (parentNode, contacto, baseData) => {
     //parametros parentNode el contenedor padre de todos los datos, contacto el registro, daseData el localStorage para eliminar registro
@@ -120,4 +122,44 @@ const cargarContactosAgenda = (parentNode, baseDatos) => {
         }
     });
 }
-export { validarAgendaContacto, alertaAgendaContacto, guardarEnLocalStorage, cargarContactosAgenda }
+
+
+//NOTA
+const validarAgendaNota = () => {
+        const tituloNota = document.querySelector("#tituloNota");
+        const contenidoNota = document.querySelector("#contenidoNota");
+        limpiarAlerta("#alertaNota");
+        let mensaje = "";
+        if (!tituloNota.value) {
+            mensaje += "El campo Titulo esta vacio";
+            tituloNota.focus();
+        } else if (!contenidoNota.value) {
+            mensaje += "EL campo del contenido de la nota esta vacio";
+            contenidoNota.focus();
+        }
+        return mensaje;
+    }
+    //TAREA
+const validarAgendaTarea = () => {
+    const tituloTarea = document.querySelector("#tituloTarea");
+    const contenidoTarea = document.querySelector("#contenidoTarea");
+    const fechaTarea = document.querySelector("#fechaTarea");
+    const horaTarea = document.querySelector("#horaTarea");
+    limpiarAlerta("#alertaTarea");
+    let mensaje = "";
+    if (!tituloTarea.value) {
+        mensaje += "EL campo Titulo está Vacio";
+        tituloTarea.focus();
+    } else if (!contenidoTarea.value) {
+        mensaje += "EL campo Contenido está Vacio";
+        contenidoTarea.focus();
+    } else if (!fechaTarea.value) {
+        mensaje += "No has selecionado la fecha";
+        fechaTarea.focus();
+    } else if (!horaTarea.value) {
+        mensaje += "No has designado una hora a la Tarea";
+        horaTarea.focus();
+    }
+    return mensaje;
+}
+export { close, validarAgendaContacto, alertaFormularioAgenda, guardarEnLocalStorage, cargarContactosAgenda, validarAgendaNota, validarAgendaTarea }
