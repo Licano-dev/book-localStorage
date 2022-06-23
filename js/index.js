@@ -76,10 +76,10 @@ btnEvento.addEventListener('click', () => {
 
 })
 
-const filtro = (e) => {
-    switch (e.srcElement.id) {
-        case 'btn-todo':
-            cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'todo');
+const filtro = (e) => { //filtro valida que boton se acciono para ejecutar la funcion con sus argumento
+    switch (e.srcElement.id) { //se obtinen el id del elemento accionado
+        case 'btn-todo': //id segun el html
+            cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'todo'); //de argumento se envia el tipo de registro a filtrar
             break;
         case 'btn-contacto':
             cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'contacto');
@@ -95,12 +95,15 @@ const filtro = (e) => {
             break;
     }
 }
-let filtroIncio = new Array(btnFiltroTodo.classList);
-let filtroTodoActivo = filtroIncio[0][1];
-const CLASS_ACTIVE = "active";
-if (filtroTodoActivo === CLASS_ACTIVE) {
-    cargarContactosAgenda(listadoContenedorHtlm, localStorageDB);
+
+//al cargar la pagina mostrara todas los registros
+let filtroIncio = new Array(btnFiltroTodo.classList); //se obtiene un array de classes css
+let filtroTodoActivo = filtroIncio[0][1]; //se filtra la clase css activa designada en el html al elemento
+const CLASS_ACTIVE = "active"; //clase css
+if (filtroTodoActivo === CLASS_ACTIVE) { //evalua si tiene la clase 
+    cargarContactosAgenda(listadoContenedorHtlm, localStorageDB); //carga los registro y los listara
 }
+//Eventos de botones a filtrar
 btnFiltroTodo.addEventListener('click', filtro);
 btnFiltroContacto.addEventListener('click', filtro);
 btnFiltroNota.addEventListener('click', filtro);

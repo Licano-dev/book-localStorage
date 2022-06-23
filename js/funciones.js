@@ -22,8 +22,8 @@ const alertaExito = (texto) => {
         window.location.href = "../";
     }, 2000);
 }
-const limpirarListaContenidoListado = (parentNode) => {
-    parentNode.innerHTML = "";
+const limpirarListaContenidoListado = (parentNode) => { //parametro el contenedor pare de la lista
+    parentNode.innerHTML = ""; //igualamos a vacio para eliminar todos los elementos hijo del contenedor padre (lista)
 }
 const validarAgendaContacto = () => {
     const nombre = document.querySelector("#nombreAgendaContacto");
@@ -282,13 +282,13 @@ const cargarContactosAgenda = (parentNode, baseDatos) => {
 }
 
 const cargarAgendaFiltro = (parentNode, baseDatos, tipo) => {
-    limpirarListaContenidoListado(parentNode);
+    limpirarListaContenidoListado(parentNode); //funcion para limpiar la lista actual y proceder listar
     // recibe el contenedor padre, y la base de datos la cual es el localStorage
     let claves = Object.keys(baseDatos); //Obtiene una array de claves del localStorage
     claves.forEach(clave => { //recorre el array
         let contactoAgenda = baseDatos.getItem(clave); //se obtine el valor del registro del local Storage segun la clave
         contactoAgenda = JSON.parse(contactoAgenda); //convierte el registro en JSON (objeto)
-        switch (tipo) {
+        switch (tipo) { //evalu el parametro enviado para su respectivo filtrado
             case "contacto":
                 if (contactoAgenda.tipoAgenda === "contacto") { //valida si es un contacto
                     listarContactosAgenda(parentNode, contactoAgenda, baseDatos); //funcion listar Datos de contacto
@@ -309,13 +309,12 @@ const cargarAgendaFiltro = (parentNode, baseDatos, tipo) => {
                     listarAgendaEvento(parentNode, contactoAgenda, baseDatos);
                 }
                 break;
-            case "todo":
+            case "todo": //si es todo carga la funcion designada al principio al cargar la pagina
                 if (contactoAgenda.tipoAgenda === "contacto") { //valida si es un contacto
                     cargarContactosAgenda(parentNode, baseDatos); //funcion listar Datos de contacto
                 }
                 break;
         }
-
     });
 }
 
