@@ -1,6 +1,7 @@
 const close = () => {
     window.location.href = "../";
 }
+
 const limpiarAlerta = (elemento) => { //esta funcion sirve para limpiar la alerta a medida de que se valida con cada click 
     let alerta = document.querySelector(elemento); //div el contenedor de la alerta
     let mensejeHtml = document.querySelector("#mensaje"); //div html de la alerta contenedor
@@ -20,6 +21,9 @@ const alertaExito = (texto) => {
     setTimeout(function() { //despues de 2 seg ejecurar la redirección
         window.location.href = "../";
     }, 2000);
+}
+const limpirarListaContenidoListado = (parentNode) => { //parametro el contenedor pare de la lista
+    parentNode.innerHTML = ""; //igualamos a vacio para eliminar todos los elementos hijo del contenedor padre (lista)
 }
 const validarAgendaContacto = () => {
     const nombre = document.querySelector("#nombreAgendaContacto");
@@ -277,6 +281,42 @@ const cargarContactosAgenda = (parentNode, baseDatos) => {
     });
 }
 
+const cargarAgendaFiltro = (parentNode, baseDatos, tipo) => {
+    limpirarListaContenidoListado(parentNode); //funcion para limpiar la lista actual y proceder listar
+    // recibe el contenedor padre, y la base de datos la cual es el localStorage
+    let claves = Object.keys(baseDatos); //Obtiene una array de claves del localStorage
+    claves.forEach(clave => { //recorre el array
+        let contactoAgenda = baseDatos.getItem(clave); //se obtine el valor del registro del local Storage segun la clave
+        contactoAgenda = JSON.parse(contactoAgenda); //convierte el registro en JSON (objeto)
+        switch (tipo) { //evalu el parametro enviado para su respectivo filtrado
+            case "contacto":
+                if (contactoAgenda.tipoAgenda === "contacto") { //valida si es un contacto
+                    listarContactosAgenda(parentNode, contactoAgenda, baseDatos); //funcion listar Datos de contacto
+                }
+                break;
+            case "nota":
+                if (contactoAgenda.tipoAgenda === "nota") {
+                    listarAgendaNota(parentNode, contactoAgenda, baseDatos);
+                }
+                break;
+            case "tarea":
+                if (contactoAgenda.tipoAgenda === "tarea") {
+                    listarAgendaTarea(parentNode, contactoAgenda, baseDatos);
+                }
+                break;
+            case "evento":
+                if (contactoAgenda.tipoAgenda === "evento") {
+                    listarAgendaEvento(parentNode, contactoAgenda, baseDatos);
+                }
+                break;
+            case "todo": //si es todo carga la funcion designada al principio al cargar la pagina
+                if (contactoAgenda.tipoAgenda === "contacto") { //valida si es un contacto
+                    cargarContactosAgenda(parentNode, baseDatos); //funcion listar Datos de contacto
+                }
+                break;
+        }
+    });
+}
 
 //NOTA
 const validarAgendaNota = () => {
@@ -347,4 +387,4 @@ const validarAgendaEvento = () => {
     return mensaje;
 
 }
-export { close, validarAgendaContacto, alertaFormularioAgenda, guardarEnLocalStorage, cargarContactosAgenda, validarAgendaNota, validarAgendaTarea, validarAgendaEvento }
+export { close, validarAgendaContacto, alertaFormularioAgenda, guardarEnLocalStorage, cargarContactosAgenda, validarAgendaNota, validarAgendaTarea, validarAgendaEvento, cargarAgendaFiltro }

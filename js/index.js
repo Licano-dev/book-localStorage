@@ -1,21 +1,24 @@
 import { AgendaContacto, AgendaTareas, AgendaEvento, AgendaNota } from "./clases.js";
-import { close, validarAgendaContacto, alertaFormularioAgenda, guardarEnLocalStorage, cargarContactosAgenda, validarAgendaNota, validarAgendaTarea, validarAgendaEvento } from "./funciones.js";
+import { close, validarAgendaContacto, alertaFormularioAgenda, guardarEnLocalStorage, cargarContactosAgenda, validarAgendaNota, validarAgendaTarea, validarAgendaEvento, cargarAgendaFiltro } from "./funciones.js";
 
 const listadoContenedorHtlm = document.querySelector("#listado-agenda");
 const localStorageDB = window.localStorage; //local storage del objeto windows del navegador
 const btnsClose = document.getElementsByClassName("btn-close-function");
 const btnAgendaContacto = document.querySelector("#btn-guardar-agendaContacto"); //boton de formulario de agenda de contactos
-
 const btnNota = document.querySelector("#btn-guardar-nota"); //boton del formulario notas
-
 const btnTarea = document.querySelector("#btn-guardar-tarea"); //boton del formulario tarea
 const btnEvento = document.querySelector("#btn-guardar-Evento");
+
+const btnFiltroTodo = document.querySelector("#btn-todo");
+const btnFiltroContacto = document.querySelector("#btn-contacto");
+const btnFiltroNota = document.querySelector("#btn-nota");
+const btnFiltroTarea = document.querySelector("#btn-tarea");
+const btnFiltroEvento = document.querySelector("#btn-evento");
 for (let elemento of btnsClose) { //evento de cerrar formularios
     elemento.addEventListener('click', close);
 }
 btnAgendaContacto.addEventListener('click', () => {
     let validar = validarAgendaContacto();
-    const TIPO_AGENDA = "contacto";
     if (validar) {
         alertaFormularioAgenda("#alerta", validar);
     } else {
@@ -72,4 +75,37 @@ btnEvento.addEventListener('click', () => {
     }
 
 })
-cargarContactosAgenda(listadoContenedorHtlm, localStorageDB);
+
+const filtro = (e) => { //filtro valida que boton se acciono para ejecutar la funcion con sus argumento
+    switch (e.srcElement.id) { //se obtinen el id del elemento accionado
+        case 'btn-todo': //id segun el html
+            cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'todo'); //de argumento se envia el tipo de registro a filtrar
+            break;
+        case 'btn-contacto':
+            cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'contacto');
+            break;
+        case 'btn-nota':
+            cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'nota');
+            break;
+        case 'btn-tarea':
+            cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'tarea');
+            break;
+        case 'btn-evento':
+            cargarAgendaFiltro(listadoContenedorHtlm, localStorageDB, 'evento');
+            break;
+    }
+}
+
+//al cargar la pagina mostrara todas los registros
+let filtroIncio = new Array(btnFiltroTodo.classList); //se obtiene un array de classes css
+let filtroTodoActivo = filtroIncio[0][1]; //se filtra la clase css activa designada en el html al elemento
+const CLASS_ACTIVE = "active"; //clase css
+if (filtroTodoActivo === CLASS_ACTIVE) { //evalua si tiene la clase 
+    cargarContactosAgenda(listadoContenedorHtlm, localStorageDB); //carga los registro y los listara
+}
+//Eventos de botones a filtrar
+btnFiltroTodo.addEventListener('click', filtro);
+btnFiltroContacto.addEventListener('click', filtro);
+btnFiltroNota.addEventListener('click', filtro);
+btnFiltroTarea.addEventListener('click', filtro);
+btnFiltroEvento.addEventListener('click', filtro);
