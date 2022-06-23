@@ -3,6 +3,7 @@
     --amarrillo: #ffc107;
     --verde: #20c997;
     --rojo: #dc3545;
+    --lineas-color: rgba(0, 0, 0, 0.175);
 }
 
 .card-category>.card-body {
@@ -59,4 +60,8 @@
 
 .alerta-oculta {
     display: none !important;
+}
+
+.space {
+    border-bottom: 1px solid var(--lineas-color);
 }
