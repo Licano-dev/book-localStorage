@@ -110,3 +110,19 @@ nav ul {
 .card-options {
     box-shadow: -1px 6px 6px -4px #0000006b;
 }
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo img {
+    width: 120%;
+    object-fit: cover;
+}
+
+.logo h2 {
+    font-family: monospace;
+    font-size: 25px;
+}
