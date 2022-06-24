@@ -79,6 +79,7 @@ btnEvento.addEventListener('click', () => {
 
 const filtro = (e) => { //filtro valida que boton se acciono para ejecutar la funcion con sus argumento
     btnFiltroTodo.classList.remove("active");
+    e.srcElement.classList.add("active"); //obtiene el elemento por media del evento accionado y agrega la clase css de boostrap active
     switch (e.srcElement.id) { //se obtinen el id del elemento accionado
         case 'btn-todo': //id segun el html
             tiluloFiltro.innerHTML = "TODOS";
