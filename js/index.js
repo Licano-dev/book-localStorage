@@ -119,3 +119,14 @@ btnFiltroContacto.addEventListener('click', filtro);
 btnFiltroNota.addEventListener('click', filtro);
 btnFiltroTarea.addEventListener('click', filtro);
 btnFiltroEvento.addEventListener('click', filtro);
+
+const logo = document.getElementById("logo");
+logo.addEventListener('mouseover', () => {
+    const mensaje = document.getElementById("mensaje");
+    mensaje.style.display = "block"
+})
+const mensajeDiv = document.getElementById("mensaje");
+mensajeDiv.addEventListener('mouseout', () => {
+    const mensaje = document.getElementById("mensaje");
+    mensaje.style.display = "none"
+})

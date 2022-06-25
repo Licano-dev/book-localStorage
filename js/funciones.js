@@ -4,10 +4,14 @@ const close = () => {
 
 const limpiarAlerta = (elemento) => { //esta funcion sirve para limpiar la alerta a medida de que se valida con cada click 
     let alerta = document.querySelector(elemento); //div el contenedor de la alerta
-    let mensejeHtml = document.querySelector("#mensaje"); //div html de la alerta contenedor
-    if (Boolean(mensejeHtml)) { //valida si existe la alerta
-        alerta.classList.add("alerta-oculta"); //oculta la alerta removiendo la clase css
-        alerta.removeChild(mensejeHtml); //elimina el div con el contenido de la alerta
+    try {
+        let mensejeHtml = document.querySelector("#mensaje"); //div html de la alerta contenedor
+        if (Boolean(mensejeHtml)) { //valida si existe la alerta
+            alerta.classList.add("alerta-oculta"); //oculta la alerta removiendo la clase css
+            alerta.removeChild(mensejeHtml); //elimina el div con el contenido de la alerta
+        }
+    } catch (error) {
+
     }
 }
 const alertaExito = (texto) => {
@@ -310,7 +314,8 @@ const cargarAgendaFiltro = (parentNode, baseDatos, tipo) => {
                 }
                 break;
             case "todo": //si es todo carga la funcion designada al principio al cargar la pagina
-                if (contactoAgenda.tipoAgenda === "contacto") { //valida si es un contacto
+                limpirarListaContenidoListado(parentNode);
+                if (contactoAgenda.tipoAgenda) { //valida si es un contacto
                     cargarContactosAgenda(parentNode, baseDatos); //funcion listar Datos de contacto
                 }
                 break;

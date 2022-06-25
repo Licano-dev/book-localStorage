@@ -68,8 +68,9 @@ header {
     background-color: var(--azul);
 }
 
-nav {
+.nav {
     background-image: var(--img-nav);
+    border-radius: 5px;
 }
 
 nav ul li .nav-link {
@@ -124,10 +125,6 @@ nav ul li .nav-link {
     color: rgba(0, 0, 0, 0.935);
     cursor: pointer;
     font-size: 2rem;
-}
-
-nav {
-    background-color: white;
 }
 
 nav ul {

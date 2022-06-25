@@ -13,12 +13,22 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body class="m-lg-5">
+<body class="mt-3 m-lg-5">
     <header class="mb-3">
-        <div class="card logo" style="width: 18rem;">
+        <div class="card logo" id="logo" style="width: 18rem;">
             <div><img src="./img/logo.png" class="card-img-top" alt="..."></div>
             <div class="card-body">
                 <h2>Book LocalStorage</h2>
+            </div>
+        </div>
+
+        <div class="card" id="mensaje" style="width: 18rem; display: none;position:absolute; z-index: 2;">
+
+            <div class="card-body">
+                <p style="text-align: center;">
+                    Proyecto personal <strong>Licano_dev</strong>, si desea haz un <strong><a href="https://github.com/yonier999/book-localStorage" target="_blank">Fork</a> </strong> del proyecto en <b>GitHub</b> y rediseña a tu gusto <br> <i class="fas fa-2x fa-laugh-beam"></i>
+                </p>
+
             </div>
         </div>
     </header>
@@ -154,7 +164,11 @@
                 </div> -->
             <!-- </div> -->
         </div>
+
     </section>
+    <footer class="card text-muted text-center p-3">
+        <a href="https://github.com/yonier999"><b>Licano_dev</b></a> &copy;copyright 2022
+    </footer>
     <!--  MODALS-->
     <!-- MODAL AGENDA CONTACTO -->
     <div class="modal fade" id="modalAgendaContacto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
