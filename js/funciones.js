@@ -1,6 +1,6 @@
 const close = () => {
   let path = window.location.pathname;
-  window.location.href = "/book-localStorage/" + path;
+  window.location.href = path;
 };
 
 const limpiarAlerta = (elemento) => {
@@ -27,7 +27,7 @@ const alertaExito = (texto) => {
   setTimeout(function () {
     //despues de 2 seg ejecurar la redirección
     let path = window.location.pathname;
-    window.location.href = "/book-localStorage/" + path;
+    window.location.href = path;
   }, 2000);
 };
 const limpirarListaContenidoListado = (parentNode) => {
