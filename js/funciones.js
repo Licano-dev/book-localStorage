@@ -1,6 +1,7 @@
 const close = () => {
   let path = window.location.pathname;
-  window.location.href = path;
+  window.location.href; //redirecciona al cancelar tarea
+  console.log(window.location.href);
 };
 
 const limpiarAlerta = (elemento) => {
@@ -27,7 +28,7 @@ const alertaExito = (texto) => {
   setTimeout(function () {
     //despues de 2 seg ejecurar la redirección
     let path = window.location.pathname;
-    window.location.href = path;
+    window.location.href; //redirecciona al ejecutar alerta
   }, 2000);
 };
 const limpirarListaContenidoListado = (parentNode) => {
