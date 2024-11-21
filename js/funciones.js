@@ -1,5 +1,5 @@
 const close = () => {
-  window.location.href = "/index.html";
+  window.location.href = "https://licano-dev.github.io/book-localStorage/";
 };
 
 const limpiarAlerta = (elemento) => {
@@ -25,7 +25,7 @@ const alertaExito = (texto) => {
   });
   setTimeout(function () {
     //despues de 2 seg ejecurar la redirección
-    window.location.href = "/index.html";
+    window.location.href = "https://licano-dev.github.io/book-localStorage/";
   }, 2000);
 };
 const limpirarListaContenidoListado = (parentNode) => {
